@@ -16,13 +16,13 @@ import "./MM.css";
 const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 console.log(window.matchMedia("(prefers-color-scheme: dark)"));
 const basic = {
-  apiKey: "AIzaSyDoyi01xdksbWgIWFWtaxj1R80DdZ6PWbw",
-  authDomain: "mm-provider.firebaseapp.com",
-  projectId: "mm-provider",
-  storageBucket: "mm-provider.appspot.com",
-  messagingSenderId: "879731928519",
-  appId: "1:879731928519:web:875d6ddfbee3d1b0363de2",
-  measurementId: "G-0KJ8T512FL",
+  apiKey: "AIzaSyD22LIz8nceulmiNWLDHC8nZj1SQ48doAQ",
+  authDomain: "nft-list-67033.firebaseapp.com",
+  projectId: "nft-list-67033",
+  storageBucket: "nft-list-67033.appspot.com",
+  messagingSenderId: "38959321496",
+  appId: "1:38959321496:web:86f6b0da736e9151f75bed",
+  measurementId: "G-2G9BE52S8T",
 };
 const rtapp = initializeApp(basic);
 const rtdb = getDatabase(rtapp);
