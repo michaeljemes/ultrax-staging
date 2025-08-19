@@ -43,7 +43,7 @@
   /* width: 100%; */
   /* --text-field-height: 48px,4; */
   font-weight: 400;
-  /* font-size: 1rem; */
+  font-size: 1.5rem !important;
   line-height: 1.5rem;
   letter-spacing: 0;
   border: 0.1px #b7bbc8 solid;
