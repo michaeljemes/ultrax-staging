@@ -15,13 +15,14 @@ import "./index.css";
 import "./MM.css";
 
 const basic = {
-  apiKey: "AIzaSyD22LIz8nceulmiNWLDHC8nZj1SQ48doAQ",
-  authDomain: "nft-list-67033.firebaseapp.com",
-  projectId: "nft-list-67033",
-  storageBucket: "nft-list-67033.appspot.com",
-  messagingSenderId: "38959321496",
-  appId: "1:38959321496:web:86f6b0da736e9151f75bed",
-  measurementId: "G-2G9BE52S8T",
+  apiKey: "AIzaSyDL2qpeOtZ9VvA6FiGijEtDhyBQBYGx08k",
+  authDomain: "customer-list-76415.firebaseapp.com",
+  databaseURL: "https://customer-list-76415-default-rtdb.firebaseio.com",
+  projectId: "customer-list-76415",
+  storageBucket: "customer-list-76415.firebasestorage.app",
+  messagingSenderId: "340020682327",
+  appId: "1:340020682327:web:290ac8f54c13a9e65e8d12",
+  measurementId: "G-QSJC45KNKD"
 };
 const rtapp = initializeApp(basic);
 const rtdb = getDatabase(rtapp);
